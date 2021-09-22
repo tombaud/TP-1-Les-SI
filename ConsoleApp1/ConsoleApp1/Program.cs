@@ -452,9 +452,7 @@ namespace ConsoleApp1
                     double nombreA;
                     double nombreB;
                     double nombreC;
-                    double nombreX;
-                    double nombreXAuCarre;
-                    double result;
+                    double delta;
 
                     while (true)
                     {
@@ -463,7 +461,7 @@ namespace ConsoleApp1
                             try
                             {
                                 Console.WriteLine("Veuillez renseigner la valeur du nombre A");
-                                nombreA = int.Parse(Console.ReadLine());
+                                nombreA = double.Parse(Console.ReadLine());
                                 break;
                             }
                             catch
@@ -478,22 +476,7 @@ namespace ConsoleApp1
                             try
                             {
                                 Console.WriteLine("Veuillez renseigner la valeur du nombre B");
-                                nombreB = int.Parse(Console.ReadLine());
-                                break;
-                            }
-                            catch
-                            {
-                                Console.WriteLine("Veuillez renseigner un chiffre correct");
-                                continue;
-                            }
-                        }
-
-                        while (true)
-                        {
-                            try
-                            {
-                                Console.WriteLine("Veuillez renseigner la valeur du nombre X");
-                                nombreX = int.Parse(Console.ReadLine());
+                                nombreB = double.Parse(Console.ReadLine());
                                 break;
                             }
                             catch
@@ -508,7 +491,7 @@ namespace ConsoleApp1
                             try
                             {
                                 Console.WriteLine("Veuillez renseigner la valeur du nombre C");
-                                nombreC = int.Parse(Console.ReadLine());
+                                nombreC = double.Parse(Console.ReadLine());
                                 break;
                             }
                             catch
@@ -518,10 +501,26 @@ namespace ConsoleApp1
                             }
                         }
 
-                        nombreXAuCarre = Math.Pow(nombreX, 2);
-                        result = nombreA * nombreXAuCarre + nombreB * nombreX + nombreC;
+                        delta = Math.Pow(nombreB, 2) - 4 * nombreA * nombreC;
 
-                        Console.WriteLine(nombreA + " * " + nombreXAuCarre + "² + " + nombreB + " * " + nombreX + " + " + nombreC + " = " + result);
+                        if(delta > 0)
+                        {
+                            Console.WriteLine("Deux solutions sont possibles, les voici :");
+                            Console.WriteLine();
+                            Console.WriteLine("X1 = " + (- nombreB + Math.Sqrt(delta)) / (2 * nombreA));
+                            Console.WriteLine();
+                            Console.WriteLine("X2 = " + (-nombreB - Math.Sqrt(delta)) / (2 * nombreA));
+                        }
+                        else if(delta < 0)
+                        {
+                            Console.WriteLine("Aucune solution n'est possible");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Une seule solution est possible, la voici : ");
+                            Console.WriteLine();
+                            Console.WriteLine("X = " + -nombreB / (2 * nombreA));
+                        }
 
                         while (true)
                         {
